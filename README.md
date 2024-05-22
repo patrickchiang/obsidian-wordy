@@ -3,8 +3,14 @@ Find synonyms and more using the [Datamuse API](https://www.datamuse.com/api/). 
 
 # Demo
 
-![](demo.gif)
+![](img/demo.gif)
+
+![](img/edit-menu.png)
+
 # Usage
+
+## Commands
+
 Select a word, run the `Wordy: Synonyms` command, find a replacement. Current commands are
 
  - `Wordy: Synonyms` — Find words that have a similiar meaning
@@ -14,7 +20,18 @@ Select a word, run the `Wordy: Synonyms` command, find a replacement. Current co
 
 **Tip: Set a hotkey for this command.**
 
+## Editor Menu
+
+Select/click on a word, right click into one of the Wordy menus (Synonyms, Antonyms, Rhymes), find a replacement.
+
 # Changelog
+
+## 1.4.0
+- Add right click menus: synonym, antonym, rhyme
+- Add options to control right click menu behavior
+- Add selection of word without needing highlight for both command/editor menus
+- Add quick caching of web API results
+
 ## 1.3.0, 1.3.1
 - Adds new MVP Wordy panel for searching synonyms
 - Locks versions for better remote/local error parity
@@ -25,9 +42,11 @@ Select a word, run the `Wordy: Synonyms` command, find a replacement. Current co
 ## 1.1.0
 - Adds `Wordy: Alliterative Synonyms` command. `good food` to `good grub`
 - Adds `Wordy: Rhymes` command.
+
 ## 1.0.1
 - Adds `Wordy: Antonyms` command. 
 - Code refactoring and strict typescript enabled.
+
 ## 0.1.0
 - Adds `Wordy: Synonyms` command to the palette. Select a word and run the command to pull up synonyms. This list includes hypernyms, hyponyms, holonyms and meronyms.
 
