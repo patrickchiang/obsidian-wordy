@@ -92,7 +92,18 @@ export default class WordyPlugin extends Plugin {
 							.setIcon('book-plus');
 
 						const submenu = item.setSubmenu();
-						this.createWordMenu(submenu, editor, this.processSynonyms.bind(this));
+
+						const itemDom = item.dom;
+						const onEnterSubmenu = async (e: MouseEvent) => {
+							await this.createWordMenu(submenu, editor, this.processSynonyms.bind(this));
+							if (menu.currentSubmenu == submenu) {
+								menu.currentSubmenu = undefined;
+							}
+							menu.openSubmenu(item);
+						};
+
+						itemDom.addEventListener('mouseover', onEnterSubmenu);
+						itemDom.addEventListener('click', onEnterSubmenu);
 					});
 				}
 
@@ -102,7 +113,17 @@ export default class WordyPlugin extends Plugin {
 							.setIcon('book-minus');
 
 						const submenu = item.setSubmenu();
-						this.createWordMenu(submenu, editor, this.processAntonyms.bind(this));
+						const itemDom = item.dom;
+						const onEnterSubmenu = async () => {
+							await this.createWordMenu(submenu, editor, this.processAntonyms.bind(this));
+							if (menu.currentSubmenu == submenu) {
+								menu.currentSubmenu = undefined;
+							}
+							menu.openSubmenu(item);
+						};
+
+						itemDom.addEventListener('mouseover', onEnterSubmenu);
+						itemDom.addEventListener('click', onEnterSubmenu);
 					});
 				}
 
@@ -112,7 +133,17 @@ export default class WordyPlugin extends Plugin {
 							.setIcon('book-headphones');
 
 						const submenu = item.setSubmenu();
-						this.createWordMenu(submenu, editor, this.processRhymes.bind(this));
+						const itemDom = item.dom;
+						const onEnterSubmenu = async () => {
+							await this.createWordMenu(submenu, editor, this.processRhymes.bind(this));
+							if (menu.currentSubmenu == submenu) {
+								menu.currentSubmenu = undefined;
+							}
+							menu.openSubmenu(item);
+						};
+
+						itemDom.addEventListener('mouseover', onEnterSubmenu);
+						itemDom.addEventListener('click', onEnterSubmenu);
 					});
 				}
 			})
@@ -288,6 +319,10 @@ export default class WordyPlugin extends Plugin {
 	}
 
 	createMenuForWords(menu: Menu, words: string[], editor: Editor, from: EditorPosition, to: EditorPosition) {
+		if (menu.items.length > 0) {
+			menu.items = [];
+		}
+
 		if (words.length == 0) {
 			menu.addItem((item) => {
 				item.setTitle("No results found.");
@@ -350,6 +385,7 @@ export default class WordyPlugin extends Plugin {
 // Wordy View
 import { ItemView, WorkspaceLeaf } from "obsidian";
 import Component from "./Component.svelte";
+import { stubString } from "lodash";
 
 export const VIEW_ID = "wordy-view";
 
