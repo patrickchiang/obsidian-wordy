@@ -281,7 +281,8 @@ export default class WordyPlugin extends Plugin {
 			const from = editor.getCursor("from");
 			const to = editor.getCursor("to");
 			const sentence = this.getSentenceUnderCursor(editor, from, to);
-			return { word: selection, from: from, to: to, sentence: sentence };
+			const word = selection.split(" ")[0];
+			return { word: word, from: from, to: to, sentence: sentence };
 		}
 
 		const cursorWordAt = editor.wordAt(editor.getCursor());
